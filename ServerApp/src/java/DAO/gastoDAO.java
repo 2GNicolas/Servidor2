@@ -40,9 +40,9 @@ public class gastoDAO implements IBaseDatos<Gasto> {
 				g.setCategoria(rs.getString(1));
 				g.setCodGasto(rs.getString(2));
 				g.setFecha(rs.getString(3));
-				g.setFrecDiaria(rs.getString(4));
+				g.setFrecDiaria(rs.getInt(4));
                                 g.setHora(rs.getString(5));
-                                g.setMontoGasto(rs.getString(6));
+                                g.setMontoGasto(rs.getInt(6));
                                 g.setMetodoPago(rs.getString(7));
                                 
 				listaGasto.add(g);

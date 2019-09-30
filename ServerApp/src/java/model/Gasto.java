@@ -11,7 +11,9 @@ package model;
  */
 public class Gasto {
     
-    private String CodGasto, MontoGasto, Categoria, FrecDiaria, fecha, hora, metodoPago;
+    
+    private String CodGasto, Categoria, fecha, hora, metodoPago,Descripcion;
+    private int MontoGasto, FrecDiaria;
 
 
     public Gasto() {
@@ -25,11 +27,11 @@ public class Gasto {
         this.CodGasto = CodGasto;
     }
 
-    public String getMontoGasto() {
+    public int getMontoGasto() {
         return MontoGasto;
     }
 
-    public void setMontoGasto(String MontoGasto) {
+    public void setMontoGasto(int MontoGasto) {
         this.MontoGasto = MontoGasto;
     }
 
@@ -41,11 +43,11 @@ public class Gasto {
         this.Categoria = Categoria;
     }
 
-    public String getFrecDiaria() {
+    public int getFrecDiaria() {
         return FrecDiaria;
     }
 
-    public void setFrecDiaria(String FrecDiaria) {
+    public void setFrecDiaria(int FrecDiaria) {
         this.FrecDiaria = FrecDiaria;
     }
 
@@ -71,6 +73,14 @@ public class Gasto {
 
     public void setMetodoPago(String metodoPago) {
         this.metodoPago = metodoPago;
+    }
+
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    public void setDescripcion(String Descripcion) {
+        this.Descripcion = Descripcion;
     }
     
     
