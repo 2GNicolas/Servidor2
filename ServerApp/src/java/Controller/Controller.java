@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DAO.gastoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,6 +18,15 @@ import javax.servlet.http.HttpServletResponse;
  * @author LENOVO
  */
 public class Controller extends HttpServlet {
+    
+    gastoDAO daog;
+
+    @Override
+    public void init() throws ServletException {
+        this.daog = new gastoDAO();
+    }
+    
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,7 +65,17 @@ public class Controller extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+       String paramName = "k1";
+       String ParamValue = request.getParameter(paramName);
+       out.write("parametro " +ParamValue);
+        System.out.println("Consola "+ParamValue);
        
+       if(ParamValue==null){
+           out.write("parametro "+ paramName + "not found");
+       }
+           out.close();
+       }
     }
 
     /**
@@ -65,4 +85,4 @@ public class Controller extends HttpServlet {
      */
    
 
-}
+

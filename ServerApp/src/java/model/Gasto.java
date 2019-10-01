@@ -15,9 +15,22 @@ public class Gasto {
     private String CodGasto, Categoria, fecha, hora, metodoPago,Descripcion;
     private int MontoGasto, FrecDiaria;
 
+    public Gasto(String CodGasto, String Categoria, String fecha, String hora, String metodoPago, String Descripcion, int MontoGasto, int FrecDiaria) {
+        this.CodGasto = CodGasto;
+        this.Categoria = Categoria;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.metodoPago = metodoPago;
+        this.Descripcion = Descripcion;
+        this.MontoGasto = MontoGasto;
+        this.FrecDiaria = FrecDiaria;
+    }
 
     public Gasto() {
     }
+
+
+    
 
     public String getCodGasto() {
         return CodGasto;
