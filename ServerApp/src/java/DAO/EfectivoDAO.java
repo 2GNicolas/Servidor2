@@ -60,7 +60,7 @@ public class EfectivoDAO {
 		Statement stm= null;
 		Connection con=null;
 		
-		String sql="INSERT INTO Efectivo values (NULL,'"+ef.getDescripcion()+"','"+ef.getFecha()+"','"+ef.getMonto()+"')";
+		String sql="INSERT INTO efectivo values ('"+ef.getCodEfectivo()+"','"+ef.getMonto()+"','"+ef.getFecha()+"','"+ef.getDescripcion()+"')";
 		
 		try {			
 			con=conexion.conectar();

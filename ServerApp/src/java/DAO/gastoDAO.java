@@ -65,8 +65,8 @@ public class gastoDAO implements IBaseDatos<Gasto> {
 		Statement stm= null;
 		Connection con=null;
 		
-		String sql="INSERT INTO Gasto values (NULL,'"+g.getCategoria()+"','"+g.getFecha()+"','"+g.getFrecDiaria()+"','"+g.getHora()+"','"+g.getCodGasto()+"','"+g.getMontoGasto()+"','"+g.getMetodoPago()+"')";
-		
+		String sql="insert into gasto values ('"+g.getCodGasto()+"','"+g.getMontoGasto()+"','"+g.getMetodoPago()+"','"+g.getFecha()+"','"+g.getHora()+"','"+g.getCategoria()+"','"+g.getFrecDiaria()+"','"+g.getDescripcion()+"')";
+
 		try {			
 			con=conexion.conectar();
 			stm= con.createStatement();

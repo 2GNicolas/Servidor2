@@ -29,7 +29,7 @@ public class TCDAO implements IBaseDatos<TarjetaCredito> {
 		Statement stm= null;
 		Connection con=null;
 		
-		String sql="INSERT INTO TarjetaCredio values ('"+Tc.getTipo()+"','"+Tc.getCuota()+"','"+Tc.getCupo()+"','"+Tc.getDigitos()+"','"+Tc.getInteres()+"')";
+		String sql="INSERT INTO tarjetacredito values ('"+Tc.getDigitos()+"','"+Tc.getTipo()+"','"+Tc.getCupo()+"','"+Tc.getCuota()+"','"+Tc.getInteres()+"')";
 		
 		try {			
 			con=conexion.conectar();
