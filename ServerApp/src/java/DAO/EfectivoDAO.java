@@ -56,7 +56,6 @@ public class EfectivoDAO {
     
     public boolean insertar(Efectivo ef) throws SQLException {
         boolean registrar = false;
-		
 		Statement stm= null;
 		Connection con=null;
 		

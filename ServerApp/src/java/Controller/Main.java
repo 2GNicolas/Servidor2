@@ -21,7 +21,7 @@ import model.TarjetaDebito;
  */
 public class Main {
     public static void main (String [ ] args) throws SQLException {
-/*
+
         gastoDAO g = new gastoDAO();
         Gasto gas = new Gasto();
         gas.setCodGasto("2");
@@ -32,9 +32,9 @@ public class Main {
         gas.setMontoGasto(15000);
         gas.setFrecDiaria(2);
         gas.setDescripcion("Cigarros");
-        g.insertar(gas);*/
+        g.insertar(gas);
         
-/*
+
         Efectivo efec = new Efectivo();
         efec.setCodEfectivo(1);
         efec.setMonto(350000);
@@ -42,9 +42,9 @@ public class Main {
         efec.setDescripcion("Sueldo del mes de septiembre");
         
         EfectivoDAO ef = new EfectivoDAO();
-        ef.insertar(efec);*/
+        ef.insertar(efec);
         
-/*
+
         TarjetaCredito tc = new TarjetaCredito();
         tc.setDigitos(2345);
         tc.setTipo("Mastercard");
@@ -52,14 +52,14 @@ public class Main {
         tc.setCuota(8500);
         tc.setInteres(2.1);
         TCDAO TC = new TCDAO();
-        TC.insertar(tc);*/
+        TC.insertar(tc);
 
-        TarjetaDebito td = new TarjetaDebito();
+      /*  TarjetaDebito td = new TarjetaDebito();
         td.setDigitos(4125);
         td.setTipo("Maestro");
         td.setDisponible(250000);
         td.setCuota(8000);
         TDDAO TD = new TDDAO();
-        TD.insertar(td);
+        TD.insertar(td);*/
         }
 }

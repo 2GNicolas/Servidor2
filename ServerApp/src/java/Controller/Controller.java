@@ -6,12 +6,18 @@
 package Controller;
 
 import DAO.gastoDAO;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Gasto;
+import model.Negocio;
 
 /**
  *
@@ -19,11 +25,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Controller extends HttpServlet {
     
-    gastoDAO daog;
+    Negocio negocio;
 
     @Override
     public void init() throws ServletException {
-        this.daog = new gastoDAO();
+        this.negocio = new Negocio();
     }
     
     
@@ -65,16 +71,48 @@ public class Controller extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-       String paramName = "k1";
+        if (request.getParameter("gasto") != null) {
+            String paramName = "gasto";
        String ParamValue = request.getParameter(paramName);
-       out.write("parametro " +ParamValue);
-        System.out.println("Consola "+ParamValue);
+        try {
+            negocio.guardarGasto(ParamValue);
+        } catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }if (request.getParameter("efectivo") != null){
+            String paramName = "efectivo";
+       String ParamValue = request.getParameter(paramName);
+        
+        try {
+            negocio.guardarEfectivo(ParamValue);
+        } catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }if (request.getParameter("debito") != null){
+            String paramName = "debito";
+       String ParamValue = request.getParameter(paramName);
+        
+        try {
+            negocio.guardarTD(ParamValue);
+        } catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        } if (request.getParameter("credito") != null){
+            String paramName = "credito";
+       String ParamValue = request.getParameter(paramName);
+        
+        try {
+            negocio.guardarTC(ParamValue);
+        } catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        
        
-       if(ParamValue==null){
-           out.write("parametro "+ paramName + "not found");
-       }
-           out.close();
+       
+       /*if(ParamValue==null){
+           System.out.println("parametro "+ paramName + "not found");
+       }*/
        }
     }
 
