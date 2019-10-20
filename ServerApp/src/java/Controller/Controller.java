@@ -10,13 +10,17 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Efectivo;
 import model.Gasto;
+import model.MetodoPago;
 import model.Negocio;
 
 /**
@@ -55,9 +59,27 @@ public class Controller extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse resp)
             throws ServletException, IOException {
-       
+       if(request.getParameter("metodosGasto")!=null){ 
+       String paramName = "metodosGasto";
+       String ParamValue = request.getParameter(paramName);
+        try {
+            ArrayList<MetodoPago> metodos = negocio.TraerMetodosPago();
+            Gson gson = new Gson();
+                String json = gson.toJson(metodos);
+                response(resp, json);
+            //response(response, json);
+        } catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       }else if(request.getParameter("consutarDia")!=null){
+           String fecha=request.getParameter("consultarDia");
+          ArrayList<Gasto> gastos=negocio.consultarDia(fecha);
+          Gson gson = new Gson();
+             String json = gson.toJson(gastos);
+          response(resp,json);
+       }
     }
 
     /**
@@ -69,7 +91,7 @@ public class Controller extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp)
             throws ServletException, IOException {
         if (request.getParameter("gasto") != null) {
             String paramName = "gasto";
@@ -100,7 +122,8 @@ public class Controller extends HttpServlet {
         } if (request.getParameter("credito") != null){
             String paramName = "credito";
        String ParamValue = request.getParameter(paramName);
-        
+            response(resp, paramName);
+             
         try {
             negocio.guardarTC(ParamValue);
         } catch (SQLException ex) {
@@ -114,6 +137,13 @@ public class Controller extends HttpServlet {
            System.out.println("parametro "+ paramName + "not found");
        }*/
        }
+    private void response(HttpServletResponse resp, String msg)
+			throws IOException {
+		PrintWriter out = resp.getWriter();
+		
+		out.println(msg );
+		
+	}
     }
 
     /**

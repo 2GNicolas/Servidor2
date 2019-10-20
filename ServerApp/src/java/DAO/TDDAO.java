@@ -46,14 +46,14 @@ public class TDDAO implements IBaseDatos<TarjetaDebito> {
 	}
  
 	
-	public List<TarjetaDebito> BuscarTodo() {
+	public ArrayList<TarjetaDebito> BuscarTodo() {
 		Connection co =null;
 		Statement stm= null;
 		ResultSet rs=null;
 		
-		String sql="SELECT * FROM TarjetaDebito ORDER BY Digitos";
+		String sql="SELECT * FROM tarjetadebito ORDER BY ID";
 		
-		List<TarjetaDebito> listaTD= new ArrayList<TarjetaDebito>();
+		ArrayList<TarjetaDebito> listaTD= new ArrayList<TarjetaDebito>();
 		
 		try {			
 			co= conexion.conectar();
@@ -61,8 +61,8 @@ public class TDDAO implements IBaseDatos<TarjetaDebito> {
 			rs=stm.executeQuery(sql);
 			while (rs.next()) {
 				TarjetaDebito s=new TarjetaDebito();
-                                s.setTipo(rs.getString(1));
-				s.setCuota(rs.getInt(2));
+                                s.setTipo(rs.getString(2));
+				s.setCuota(rs.getInt(1));
 				s.setDigitos(rs.getInt(3));
                                 s.setDisponible(rs.getInt(4));
                                
@@ -73,7 +73,7 @@ public class TDDAO implements IBaseDatos<TarjetaDebito> {
 			rs.close();
 			co.close();
 		} catch (SQLException e) {
-			System.out.println("Error: Clase TDDAO, método obtener");
+			System.out.println("Error: Clase TDDAO, método obtener"+e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 		

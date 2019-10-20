@@ -19,14 +19,14 @@ import model.Efectivo;
  * @author LENOVO
  */
 public class EfectivoDAO {
-     public List<Efectivo> BuscarTodo() throws SQLException {
+     public ArrayList<Efectivo> BuscarTodo() throws SQLException {
 		Connection co =null;
 		Statement stm= null;
 		ResultSet rs=null;
 		
-		String sql="SELECT * FROM Efectivo ORDER BY CodEfectivo";
+		String sql="SELECT * FROM efectivo ORDER BY ID";
 		
-		List<Efectivo> listaEfectivo= new ArrayList<Efectivo>();
+		ArrayList<Efectivo> listaEfectivo= new ArrayList<Efectivo>();
 		
 		try {			
 			co= conexion.conectar();

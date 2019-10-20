@@ -11,6 +11,10 @@ import DAO.TDDAO;
 import DAO.gastoDAO;
 import com.google.gson.Gson;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -44,6 +48,26 @@ public class Negocio{
         System.out.println(gasto.getDescripcion());
         return gasto;
     }
+    public ArrayList<MetodoPago> TraerMetodosPago() throws SQLException {
+        ArrayList<MetodoPago> metodos = new ArrayList<>();
+             metodos.add(new MetodoPago("Efectivo", ""));
+             
+        ArrayList<TarjetaCredito> Tcs = daoTC.BuscarTodo();
+        for (int i = 0; i < Tcs.size(); i++) {
+           MetodoPago met = new MetodoPago(Tcs.get(i).getTipo(), Tcs.get(i).getDigitos()+"");
+           metodos.add(met);
+            System.out.println("AQUIIII"+met.Nombre);
+        }
+        ArrayList<TarjetaDebito> Tds = daoTD.BuscarTodo();
+        for (int i = 0; i < Tds.size(); i++) {
+           MetodoPago met = new MetodoPago(Tds.get(i).getTipo(), Tds.get(i).getDigitos()+"");
+           metodos.add(met);
+            System.out.println("AQUIIII"+met.Nombre);
+
+        }
+        System.out.println(metodos.size());
+       return metodos;
+    }
 
     private Efectivo convertEfectivoFromJson(String json) {
         Gson gson = new Gson();
@@ -62,6 +86,16 @@ public class Negocio{
         TarjetaCredito TC = gson.fromJson(json, TarjetaCredito.class);
         return TC;
     }
+    public ArrayList<Gasto> consultarDia(String fecha){
+            try {
+                ArrayList<Gasto> gastos=daogasto.BuscarDia(fecha);
+                return gastos;
+            } catch (SQLException ex) {
+                Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return null;
+    }
+    
 
     
 }

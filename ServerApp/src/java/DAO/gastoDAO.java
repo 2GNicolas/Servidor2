@@ -58,7 +58,76 @@ public class gastoDAO implements IBaseDatos<Gasto> {
 		return listaGasto;
 	}
 
-    
+    public ArrayList<Gasto> BuscarDia(String fecha) throws SQLException {
+		Connection co =null;
+		Statement stm= null;
+		ResultSet rs=null;
+		
+		String sql="SELECT * FROM Gasto where Fecha = "+fecha+" ORDER BY ID";
+		
+		ArrayList<Gasto> listaGasto= new ArrayList<Gasto>();
+		
+		try {			
+			co= conexion.conectar();
+			stm=co.createStatement();
+			rs=stm.executeQuery(sql);
+			while (rs.next()) {
+				Gasto g=new Gasto();
+				g.setCategoria(rs.getString(1));
+				g.setCodGasto(rs.getString(2));
+				g.setFecha(rs.getString(3));
+				g.setFrecDiaria(rs.getInt(4));
+                                g.setHora(rs.getString(5));
+                                g.setMontoGasto(rs.getInt(6));
+                                g.setMetodoPago(rs.getString(7));
+                                
+				listaGasto.add(g);
+			}
+			stm.close();
+			rs.close();
+			co.close();
+		} catch (SQLException e) {
+			System.out.println("Error: Clase gastoDAO, método obtener");
+			e.printStackTrace();
+		}
+		
+		return listaGasto;
+	}
+        public ArrayList<Gasto> BuscarGastosentre(String fechai, String fechaf) throws SQLException {
+		Connection co =null;
+		Statement stm= null;
+		ResultSet rs=null;
+		
+		String sql="SELECT * FROM Gasto where Fecha between '"+fechai+"' and '"+fechaf+"'";
+		
+		ArrayList<Gasto> listaGasto= new ArrayList<Gasto>();
+		
+		try {			
+			co= conexion.conectar();
+			stm=co.createStatement();
+			rs=stm.executeQuery(sql);
+			while (rs.next()) {
+				Gasto g=new Gasto();
+				g.setCategoria(rs.getString(1));
+				g.setCodGasto(rs.getString(2));
+				g.setFecha(rs.getString(3));
+				g.setFrecDiaria(rs.getInt(4));
+                                g.setHora(rs.getString(5));
+                                g.setMontoGasto(rs.getInt(6));
+                                g.setMetodoPago(rs.getString(7));
+                                
+				listaGasto.add(g);
+			}
+			stm.close();
+			rs.close();
+			co.close();
+		} catch (SQLException e) {
+			System.out.println("Error: Clase gastoDAO, método obtener");
+			e.printStackTrace();
+		}
+		
+		return listaGasto;
+	}
     public boolean insertar(Gasto g) throws SQLException {
         boolean registrar = false;
 		

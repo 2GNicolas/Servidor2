@@ -24,18 +24,18 @@ public class Main {
 
         gastoDAO g = new gastoDAO();
         Gasto gas = new Gasto();
-        gas.setCodGasto("2");
+        gas.setCodGasto("29");
         gas.setCategoria("Otros Gastos");
         gas.setFecha("2019-10-25");
         gas.setHora("9:00:00");
         gas.setMetodoPago("efectivo");
         gas.setMontoGasto(15000);
         gas.setFrecDiaria(2);
-        gas.setDescripcion("Cigarros");
+        gas.setDescripcion("lolo");
         g.insertar(gas);
         
 
-        Efectivo efec = new Efectivo();
+        /*Efectivo efec = new Efectivo();
         efec.setCodEfectivo(1);
         efec.setMonto(350000);
         efec.setFecha("2019-10-26");

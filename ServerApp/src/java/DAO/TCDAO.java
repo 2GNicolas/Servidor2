@@ -46,14 +46,14 @@ public class TCDAO implements IBaseDatos<TarjetaCredito> {
 	}
  
 	
-	public List<TarjetaCredito> BuscarTodo() throws SQLException {
+	public ArrayList<TarjetaCredito> BuscarTodo() throws SQLException {
 		Connection co =null;
 		Statement stm= null;
 		ResultSet rs=null;
 		
-		String sql="SELECT * FROM Ingreso ORDER BY CodIngreso";
+		String sql="SELECT * FROM tarjetacredito ORDER BY ID";
 		
-		List<TarjetaCredito> listaTC= new ArrayList<TarjetaCredito>();
+		ArrayList<TarjetaCredito> listaTC= new ArrayList<TarjetaCredito>();
 		
 		try {			
 			co= conexion.conectar();
@@ -61,8 +61,8 @@ public class TCDAO implements IBaseDatos<TarjetaCredito> {
 			rs=stm.executeQuery(sql);
 			while (rs.next()) {
 				TarjetaCredito i=new TarjetaCredito();
-				i.setTipo(rs.getString(1));
-				i.setCuota(rs.getInt(2));
+				i.setTipo(rs.getString(2));
+				i.setCuota(rs.getInt(1));
 				i.setCupo(rs.getInt(3));
                                 i.setDigitos(rs.getInt(4));
                                 i.setInteres(rs.getDouble(5));
